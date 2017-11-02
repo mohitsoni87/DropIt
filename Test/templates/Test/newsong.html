@@ -1,0 +1,40 @@
+{% extends 'Test/base.html' %}
+{% load crispy_forms_tags %}
+<!--
+{% block title %}{{album}}{% endblock %}
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-sm-12 col-md-6">
+            <div class = "panel panel-default">
+                <br>
+                <form class = "form-horizontal" action = "/test/{{form.id}}" method = "post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class = "form-group">
+                            <div class = "col-sm-offset-2"><span class = "text-danger small ">{{field.errors}}</span></div>
+                            <label class = "control-label col-sm-2">{{ field.label_tag }}</label>
+                            <div class = "col-sm-10">{{ field }}</div>
+                        </div>
+                    {% endfor %}
+                    <div class = "form-group">
+                        <div class = "col-md-offset-2 col-md-2">
+                            <button href = "{{form.get_absolute_url}" name = "random" type = "submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>-->
+{% block body%}
+<form class = "form" action = "{% url 'Test:added' album %}">
+        {% csrf_token %}
+        <div class = "form-group">
+            <input class = "form-control" name = "song_name" placeholder="Song name"></div>
+        </div>
+        <div class = "col-md-1">
+            <button name = "bt1" type = "submit" class = "btn btn-success btn-block">Submit</button>
+        </div>
+</form>
+{% endblock %}

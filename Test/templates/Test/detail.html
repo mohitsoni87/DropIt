@@ -1,0 +1,39 @@
+{% extends 'Test/base.html' %}
+{% block title %}{{album}}{% endblock %}
+{% block body %}
+<!-- <img src = "{{STATIC_URL}}images/download.jpg"> Album photo</img> -->
+<i><h1> Album ID & its Artist page</h1></i>
+<!-- <img src = "{{album.album_logo }}" alt="test"> Album photo</img> -->
+<center><img src = "{{album.album_logo.url}}" width = 350 class = "img-responsive"/></center>
+<h4>Album: {{album}}</h4>
+<h4>Artist: {{album.artist}}</h4>
+<h4>Genre: {{album.genre}}</h4>
+<h4>List of songs:</h4>
+<ul>
+        <!-- "/test/{{album.id}}/favorite/"  -->
+	    <form action = "{% url 'Test:favorite' album.id%}" method = "post">
+            {% csrf_token %}
+            {% for var in album.song_set.all %}
+	        <input type = "radio" id = "var{{forloop.counter}}" name = "song" value = "{{ var.id }}"/>
+            <label for = "var{{forloop.counter}}">
+                {{ var.song_title }}
+                {% if var.is_favorite %}
+                        <img src = "http://p4.storage.canalblog.com/42/78/558971/66554556.jpg" height = "30 %"/>
+                {% endif %}
+            </label><br>
+            <br>
+            {% endfor %}
+            <div class = "col-md-2 col-xs-6">
+                <button class = "btn btn-primary btn-block " type = "submit" name = "submit">Add to Favorites</button>
+            </div>
+        </form>
+        <form action = "{% url 'Test:add-song' album.id %}" method="POST">
+            {% csrf_token %}
+            <div class = "col-md-2 col-xs-5">
+                <button class = "btn btn-primary btn-block " type = "submit" name = "submit">Add song</button>
+            </div>
+        </form>
+
+{% endblock %}
+<!--    <!--{% url 'Test:add_new'%}-->
+	<!---<li> {{var.song_title}}</li>-->

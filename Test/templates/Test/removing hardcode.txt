@@ -1,0 +1,1 @@
+<!--{% page 'Test: album_data' var.id %}-->
